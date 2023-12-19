@@ -9,6 +9,9 @@ Nimiq's Email signatures
     A builder for your email signature.
 <p>
 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/74608a27-48ed-4415-bd75-1be0c8cb5ece/deploy-status)](https://app.netlify.com/sites/frabjous-pothos-386060/deploys)
+
+
 <details>
 <summary>See the template HTML Code</summary>
 
