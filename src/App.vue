@@ -114,7 +114,7 @@ const isDark = useMediaQuery('(prefers-color-scheme: dark)')
               </SheetContent>
             </Sheet>
 
-            <Link target="_blank" variant="link" href="https://github.com/onmax/nimiq-ui/tree/main/apps/email-signatures"
+            <Link target="_blank" variant="link" href="https://github.com/onmax/nimiq-email-signatures"
               size="sm" class="flex gap-x-2">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 32 32">
               <path fill="currentColor" fill-rule="evenodd"
