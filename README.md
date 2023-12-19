@@ -1,6 +1,6 @@
 <br />
 <p align="center">
-    <img src="./preview.png" alt="Email Signature Preview" width="80%" />
+    <img src="./preview.png" alt="Email Signature Preview" height="300px" />
 
 <h1 align="center">
 Nimiq's Email signatures
