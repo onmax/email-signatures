@@ -31,7 +31,6 @@ const twitter = useLocalStorage('twitter', defaultProfile.twitter, { writeDefaul
 const primarySocial = useLocalStorage<SocialMedia>('primarySocial', SocialMedia.Telegram, { writeDefaults: false }) as unknown as Ref<SocialMedia>;
 const disclosure = useLocalStorage('disclosure', defaultProfile.disclosure, { writeDefaults: false }) as unknown as Ref<string>;
 
-
 const visited = ref(new Set())
 
 const input = reactive({ name, role, email, phoneNumber, logos, telegram, facebook, youtube, instagram, twitter, disclosure, primarySocial });
@@ -69,8 +68,8 @@ const isDark = useMediaQuery('(prefers-color-scheme: dark)')
 </script>
 
 <template>
-  <div class="min-h-[100dvh] flex flex-col">
-    <div class="py-10 bg-slate-100">
+  <div class="min-h-[100dvh] flex flex-col *:px-4" :class="isDark ? 'dark' : ''">
+    <div class="py-10 bg-slate-100 dark:bg-[#12163c] dark:text-white">
       <div class="max-w-[1041px] mx-auto">
         <header class="flex items-center justify-between">
           <h1 class="text-2xl font-bold">Nimiq's Email Signatures</h1>
@@ -130,10 +129,10 @@ const isDark = useMediaQuery('(prefers-color-scheme: dark)')
     </div>
 
 
-    <div class="flex flex-wrap justify-center flex-1 gap-16 pt-10 bg-slate-100">
+    <div class="flex flex-wrap justify-center flex-1 gap-16 pt-10 bg-slate-100 dark:bg-[#1f2348]">
       <div class="flex flex-col gap-4 w-sm">
         <div class="flex justify-between">
-          <h2 class="text-xl">Your data</h2>
+          <h2 class="text-xl dark:text-white/80">Your data</h2>
           <Button @click="resetData" variant="outline" size="sm" class="flex gap-x-2">
             <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 32 32">
               <path fill="currentColor"
@@ -142,7 +141,7 @@ const isDark = useMediaQuery('(prefers-color-scheme: dark)')
             Reset data</Button>
         </div>
         <Tabs default-value="personal" class="flex flex-col">
-          <TabsList class="bg-slate-200">
+          <TabsList class="bg-slate-200 dark:bg-[#12163c]">
             <TabsTrigger value="personal">Personal Info</TabsTrigger>
             <TabsTrigger value="social" @click="visited.add('social')" :notification="!visited.has('social')">Social Media
             </TabsTrigger>
@@ -221,7 +220,7 @@ const isDark = useMediaQuery('(prefers-color-scheme: dark)')
 
       <div style="width: 600px;">
         <div class="flex justify-between mb-4">
-          <div class="flex items-center gap-x-2">
+          <div class="flex items-center gap-x-2 dark:text-white/80">
             <h2 class="text-xl">Preview</h2>
             <Popover v-if="isDark">
               <PopoverTrigger>
@@ -264,14 +263,14 @@ const isDark = useMediaQuery('(prefers-color-scheme: dark)')
           </div>
         </div>
 
-        <div class="relative bg-white rounded-md border-foreground">
-          <div class="relative p-6 text-sm border-b border-dashed border-foreground/20 text-foreground/40">
+        <div class="relative bg-white rounded-md border-foreground dark:bg-[#12163c]">
+          <div class="relative p-6 text-sm border-b border-dashed border-foreground/20 text-foreground/40 ">
             Dear Mr. John Doe,<br />
 
             <div class="flex flex-col gap-1 mt-1">
               <div class="flex flex-wrap gap-1">
                 <div v-for="i in Math.floor(Math.random() * (75 - 40 + 1)) + 40" :key="i"
-                  class="h-2 rounded-md bg-slate-100"
+                  class="h-2 rounded-md bg-slate-100 dark:bg-white/20"
                   :style="{ width: Math.floor(Math.random() * (40 - 10 + 1)) + 10 + 'px' }" />
               </div>
             </div>

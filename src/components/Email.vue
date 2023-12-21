@@ -131,7 +131,7 @@ const logos = computed(() => Object.entries(props.logos).filter(([_, value]) => 
         <ESection style="margin-top: 40px" v-if="disclosure" />
 
         <ESection v-if="disclosure" style=" color: ">
-          <EText v-for="line in disclosure" :key="line" style="margin: 8px 0;font-style: normal;padding-left:3px;font-size: 12px;">{{ line
+          <EText v-for="line in disclosure" :key="line" style="line-height:1.2;margin: 8px 0;font-style: normal;padding-left:3px;font-size: 12px;">{{ line
           }}</EText>
         </ESection>
       </EContainer>
