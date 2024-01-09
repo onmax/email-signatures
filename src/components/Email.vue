@@ -99,7 +99,7 @@ const logos = computed(() => Object.entries(props.logos).filter(([_, value]) => 
               style="vertical-align: middle; display: inline-block; margin:0;box-sizing: border-box;">
               <ELink :href="primarySocial.url" style="font-size:12px;color:rgba(16,21,49,0.5);margin:0;line-height: 1;">
                 <EImg :src="primarySocial.img" :alt="primarySocial.social" width="24" height="20"
-                  style="border: none; display: inline; outline: none; text-decoration: none; position:relative;bottom:-6px" />
+                  style="border: none; display: inline; outline: none; text-decoration: none; position:relative;" />
                 {{ primarySocial.username }}
               </ELink>
               &nbsp;&nbsp;&nbsp;
@@ -112,7 +112,7 @@ const logos = computed(() => Object.entries(props.logos).filter(([_, value]) => 
         <ERow style="min-height: 32px" v-if="logos.length > 0">
           <ELink v-for="({ imgUrl, url }) in logos" :key="url" :href="url" style="margin-right: 24px;">
             <EColumn>
-              <EImg style="margin:-16px 0; height: 20px;" :src="imgUrl" alt="Logo" />
+              <EImg style="margin:-20px 0; height: 24px;" :src="imgUrl" alt="Logo" />
             </EColumn>
           </ELink>
         </ERow>
@@ -121,7 +121,7 @@ const logos = computed(() => Object.entries(props.logos).filter(([_, value]) => 
           <EText v-for="social in restSocial" style="vertical-align: middle; display: inline-block; margin:0">
             <ELink :href="social.url" style="font-size:12px;margin:0;line-height: 1;">
               <EImg :src="social.img" :alt="social.social" width="24" height="20"
-                style="border: none; display: inline; outline: none; text-decoration: none; position:relative;bottom:-6px" />
+                style="border: none; display: inline; outline: none; text-decoration: none; position:relative;" />
               {{ social.username }}
             </ELink>
             &nbsp;&nbsp;&nbsp;
@@ -131,8 +131,9 @@ const logos = computed(() => Object.entries(props.logos).filter(([_, value]) => 
         <ESection style="margin-top: 40px" v-if="disclosure" />
 
         <ESection v-if="disclosure" style=" color: ">
-          <EText v-for="line in disclosure" :key="line" style="line-height:1.2;margin: 8px 0;font-style: normal;padding-left:3px;font-size: 12px;">{{ line
-          }}</EText>
+          <EText v-for="line in disclosure" :key="line"
+            style="line-height:1.2;margin: 8px 0;font-style: normal;padding-left:3px;font-size: 12px;">{{ line
+            }}</EText>
         </ESection>
       </EContainer>
     </EBody>
