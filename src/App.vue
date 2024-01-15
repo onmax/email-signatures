@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import { Ref, h, reactive, ref } from 'vue';
+import { Ref, h, ref } from 'vue';
 import Email from './components/Email.vue';
 import { useRender } from 'vue-email';
 import { Logos, Logo, SocialMedia } from './types';
-import { useLocalStorage, useMediaQuery, computedAsync } from '@vueuse/core';
+import { useLocalStorage, useMediaQuery } from '@vueuse/core';
 import { profile as defaultProfile } from './profiles';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from './components/ui/tabs/index'
 import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue, } from './components/ui/select/index'
@@ -18,35 +18,54 @@ import { Popover, PopoverContent, PopoverTrigger } from './components/ui/popover
 import Toaster from './components/ui/toast/Toaster.vue'
 import { useToast } from './components/ui/toast/use-toast'
 
-const name = useLocalStorage('name', defaultProfile.name, { writeDefaults: false }) as unknown as Ref<string>;
-const role = useLocalStorage('role', defaultProfile.role, { writeDefaults: false }) as unknown as Ref<string>;
-const email = useLocalStorage('email', defaultProfile.email, { writeDefaults: false }) as unknown as Ref<string>;
-const phoneNumber = useLocalStorage('phoneNumber', defaultProfile.phoneNumber, { writeDefaults: false }) as unknown as Ref<string>;
+const name = useLocalStorage('name', defaultProfile.name, { writeDefaults: false })
+const role = useLocalStorage('role', defaultProfile.role, { writeDefaults: false })
+const email = useLocalStorage('email', defaultProfile.email, { writeDefaults: false })
+const phoneNumber = useLocalStorage('phoneNumber', defaultProfile.phoneNumber, { writeDefaults: false })
 const logos = useLocalStorage('logos', defaultProfile.logos, { writeDefaults: false }) as unknown as Ref<Logos>;
-const telegram = useLocalStorage('telegram', defaultProfile.telegram, { writeDefaults: false }) as unknown as Ref<string>;
-const facebook = useLocalStorage('facebook', defaultProfile.facebook, { writeDefaults: false }) as unknown as Ref<string>;
-const youtube = useLocalStorage('youtube', defaultProfile.youtube, { writeDefaults: false }) as unknown as Ref<string>;
-const instagram = useLocalStorage('instagram', defaultProfile.instagram, { writeDefaults: false }) as unknown as Ref<string>;
-const twitter = useLocalStorage('twitter', defaultProfile.twitter, { writeDefaults: false }) as unknown as Ref<string>;
+const telegram = useLocalStorage('telegram', defaultProfile.telegram, { writeDefaults: false })
+const facebook = useLocalStorage('facebook', defaultProfile.facebook, { writeDefaults: false })
+const youtube = useLocalStorage('youtube', defaultProfile.youtube, { writeDefaults: false })
+const instagram = useLocalStorage('instagram', defaultProfile.instagram, { writeDefaults: false })
+const twitter = useLocalStorage('twitter', defaultProfile.twitter, { writeDefaults: false })
 const primarySocial = useLocalStorage<SocialMedia>('primarySocial', SocialMedia.Telegram, { writeDefaults: false }) as unknown as Ref<SocialMedia>;
-const disclosure = useLocalStorage('disclosure', defaultProfile.disclosure, { writeDefaults: false }) as unknown as Ref<string>;
+const disclosure = useLocalStorage('disclosure', defaultProfile.disclosure, { writeDefaults: false })
 
 const visited = ref(new Set())
-
-const input = reactive({ name, role, email, phoneNumber, logos, telegram, facebook, youtube, instagram, twitter, disclosure, primarySocial });
 
 const pretty = useLocalStorage('pretty', false);
 const { toast } = useToast();
 
-const htmlCode = computedAsync(() => useRender(Email, { props: input }, { pretty: pretty.value }).then(res => res.html))
+async function getCode() {
+  console.log("rendering", name.value, role.value, email.value, phoneNumber.value, logos.value, telegram.value, facebook.value, youtube.value, instagram.value, twitter.value, disclosure.value, primarySocial.value)
+  const { html } = await useRender(Email, {
+    props: {
+      name: name.value,
+      role: role.value,
+      email: email.value,
+      phoneNumber: phoneNumber.value,
+      logos: logos.value,
+      telegram: telegram.value,
+      facebook: facebook.value,
+      youtube: youtube.value,
+      instagram: instagram.value,
+      twitter: twitter.value,
+      disclosure: disclosure.value,
+      primarySocial: primarySocial.value,
+    }
+  }, { pretty: pretty.value })
+  console.log(html)
+  return html
+}
 
 async function copy() {
-  await navigator.clipboard?.writeText(htmlCode.value);
+  console.log("copying")
+  await navigator.clipboard?.writeText(await getCode());
   useToast().toast({ title: 'Copied to clipboard!' })
 }
 
 async function download() {
-  const blob = new Blob([htmlCode.value], { type: 'text/html' });
+  const blob = new Blob([await getCode()], { type: 'text/html' });
   const url = URL.createObjectURL(blob);
   const a = document.createElement('a');
   a.href = url;
@@ -281,7 +300,8 @@ const isDark = useMediaQuery('(prefers-color-scheme: dark)')
 
           </div>
 
-          <Email v-bind="input" />
+          <Email
+            v-bind="{ name, role, email, phoneNumber, logos, telegram, facebook, youtube, instagram, twitter, disclosure, primarySocial }" />
 
           <div class="absolute max-2xl:hidden text-[#888888] right-[-160px] top-10">
             <h3 class="-mb-6 -mr-6 text-right" style="font-family: 'Comic Sans MS', cursive, sans-serif;">Your signature

@@ -32,7 +32,6 @@
     "node_modules",
     "*.config.js"
   ],
-  "baseUrl": ".",
   "paths": {
     "@/*": [
       "./src/*"
