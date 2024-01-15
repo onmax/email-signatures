@@ -65,6 +65,7 @@ async function copy() {
 }
 
 async function download() {
+  console.log("downloading")
   const blob = new Blob([await getCode()], { type: 'text/html' });
   const url = URL.createObjectURL(blob);
   const a = document.createElement('a');

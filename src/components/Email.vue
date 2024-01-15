@@ -72,7 +72,7 @@ const logos = computed(() => Object.entries(props.logos).filter(([_, value]) => 
       padding: '24px',
       fontStyle: 'normal',
     }">
-      <EContainer>
+      <EContainer style="max-width: auto">
         <ESection>
           <EHeading style="font-size: 24px; font-weight: bold;  margin: 0;padding-left:3px" v-if="name"> {{ name }}
           </EHeading>
@@ -80,7 +80,8 @@ const logos = computed(() => Object.entries(props.logos).filter(([_, value]) => 
 
         <ESection>
           <EHeading as="h4"
-            style="font-size: 12px; font-weight: 400; margin-top: 2px; margin-bottom: 0px;padding-left:3px" v-if="role">
+            style="font-size: 12px; margin-top: 2px; margin-bottom: 0px;padding-left:3px;letter-spacing:1.4; font-weight:700; text-transform: uppercase;opacity:0.8"
+            v-if="role">
             {{ role }}
           </EHeading>
         </ESection>
