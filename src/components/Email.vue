@@ -89,9 +89,11 @@ const logos = computed(() => Object.entries(props.logos).filter(([_, value]) => 
 
         <ERow style=" margin-top:24px">
           <EColumn>
-            <ELink :href="`mailto:${email}`" style="font-size:12px; margin: 0; text-decoration: none;padding-left:3px">
-              {{ email }}
-            </ELink>
+            <EText style="font-size: 12px; margin: 0;line-height: 1;margin-top:8px;padding-left:3px">
+              <ELink :href="`mailto:${email}`">
+                {{ email }}
+              </ELink>
+            </EText>
             <EText v-if="phoneNumber" style="font-size: 12px; margin: 0;line-height: 1;margin-top:8px;padding-left:3px">{{
               phoneNumber }}
             </EText>
