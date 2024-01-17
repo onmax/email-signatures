@@ -100,7 +100,7 @@ const logos = computed(() => Object.entries(props.logos).filter(([_, value]) => 
 
             <EText v-if="primarySocial"
               style="vertical-align: middle; display: inline-block; margin:0;box-sizing: border-box;">
-              <ELink :href="primarySocial.url" style="font-size:12px;color:rgba(16,21,49,0.5);margin:0;line-height: 1;">
+              <ELink :href="primarySocial.url" style="font-size:12px;margin:0;line-height: 1;">
                 <EImg :src="primarySocial.img" :alt="primarySocial.social" width="24" height="20"
                   style="border: none; display: inline; outline: none; text-decoration: none; position:relative;" />
                 {{ primarySocial.username }}
@@ -131,9 +131,7 @@ const logos = computed(() => Object.entries(props.logos).filter(([_, value]) => 
           </EText>
         </ESection>
 
-        <ESection style="margin-top: 40px" v-if="disclosure" />
-
-        <ESection v-if="disclosure" style=" color: ">
+        <ESection v-if="disclosure.length > 0" style="margin-top: 40px">
           <EText v-for="line in disclosure" :key="line"
             style="line-height:1.2;margin: 8px 0;font-style: normal;padding-left:3px;font-size: 12px;">{{ line
             }}</EText>
@@ -144,6 +142,10 @@ const logos = computed(() => Object.entries(props.logos).filter(([_, value]) => 
 </template>
 
 <style scoped>
+a {
+  color: rgba(15, 21, 49, 0.5) !important;
+}
+
 /* If it is dark, use colors from the client */
 @media (prefers-color-scheme: light) {
   h1 {
@@ -151,7 +153,6 @@ const logos = computed(() => Object.entries(props.logos).filter(([_, value]) => 
   }
 
   p,
-  a,
   h4 {
     color: rgba(15, 21, 49, 0.5) !important;
   }

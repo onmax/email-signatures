@@ -83,6 +83,8 @@ function resetData() {
 }
 
 
+const randomWords = 50
+const getRandomWidth = () => `${Math.floor(Math.random() * (40 - 10 + 1)) + 10}px`
 </script>
 
 <template>
@@ -148,7 +150,7 @@ function resetData() {
     </div>
 
 
-    <div class="flex flex-wrap justify-center flex-1 gap-16 pt-10 bg-slate-100 ">
+    <div class="flex flex-wrap justify-center flex-1 gap-16 py-10 bg-slate-100 ">
       <div class="flex flex-col gap-4 w-sm">
         <div class="flex justify-between">
           <h2 class="text-xl ">Your data</h2>
@@ -266,9 +268,8 @@ function resetData() {
 
             <div class="flex flex-col gap-1 mt-1">
               <div class="flex flex-wrap gap-1">
-                <div v-for="i in Math.floor(Math.random() * (75 - 40 + 1)) + 40" :key="i"
-                  class="h-2 rounded-md bg-slate-100 "
-                  :style="{ width: Math.floor(Math.random() * (40 - 10 + 1)) + 10 + 'px' }" />
+                <div v-for="i in randomWords" v-once :key="i" class="h-2 rounded-md bg-slate-100 "
+                  :style="{ width: getRandomWidth() }" />
               </div>
             </div>
             <div class="mt-1">
