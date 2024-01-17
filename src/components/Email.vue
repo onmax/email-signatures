@@ -144,29 +144,16 @@ const logos = computed(() => Object.entries(props.logos).filter(([_, value]) => 
 </template>
 
 <style scoped>
-h1 {
-  color: rgba(15, 21, 49) !important;
-}
-
-p,
-a,
-h4 {
-  color: rgba(15, 21, 49, 0.5) !important;
-}
-
-@media (prefers-color-scheme: dark) {
-  body {
-    background-color: #12163c !important;
-  }
-
+/* If it is dark, use colors from the client */
+@media (prefers-color-scheme: light) {
   h1 {
-    color: rgba(255, 255, 255) !important;
+    color: rgba(15, 21, 49) !important;
   }
 
   p,
   a,
   h4 {
-    color: rgba(255, 255, 255, 0.5) !important;
+    color: rgba(15, 21, 49, 0.5) !important;
   }
 }
 </style>
