@@ -51,7 +51,7 @@ const urls = {
   [Logo.Nimiq]: 'https://nimiq.com/',
 } as const
 
-const logos = computed(() => Object.entries(props.logos).filter(([_, value]) => value).map(([logo, _]) => ({ imgUrl: `${baseUrl}/${logo}.png`, url: urls[logo as Logo] })))
+const logos = computed(() => Object.entries(props.logos).filter(([_, value]) => value).map(([logo, _]) => ({ imgUrl: `${baseUrl}/${logo}.png`, url: urls[logo as Logo], alt: `${logo} logo` })))
 </script>
 
 <template>
@@ -127,9 +127,9 @@ const logos = computed(() => Object.entries(props.logos).filter(([_, value]) => 
               <ESection style="margin-top: 40px" />
 
               <ERow style="min-height: 32px" v-if="logos.length > 0">
-                <ELink v-for="({ imgUrl, url }) in logos" :key="url" :href="url" style="margin-right: 24px;">
+                <ELink v-for="({ imgUrl, url, alt }) in logos" :key="url" :href="url" style="margin-right: 24px;">
                   <EColumn>
-                    <EImg style="margin:-20px 0; height: 24px;" :src="imgUrl" alt="Logo" />
+                    <EImg style="margin:-20px 0; height: 24px;" :src="imgUrl" :alt="alt" />
                   </EColumn>
                 </ELink>
               </ERow>
