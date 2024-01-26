@@ -1,6 +1,6 @@
 
 <script setup lang="ts">
-import { EHtml, EHead, EFont, EBody, EText, EContainer, EColumn, ERow, ESection, EImg, EHeading, ELink } from "vue-email"
+import { EHtml, EHead, EFont, EBody, EText, EColumn, ERow, ESection, EImg, EHeading, ELink } from "vue-email"
 import { computed, toValue, type PropType, ref, watch, nextTick } from 'vue';
 import { Logo, Logos, SocialMedia } from "../types";
 
@@ -72,89 +72,82 @@ const logos = computed(() => Object.entries(props.logos).filter(([_, value]) => 
       padding: '24px',
       fontStyle: 'normal',
     }">
-      <EContainer style="max-width: auto">
-        <ESection>
-          <EHeading style="font-size: 24px; font-weight: bold;  margin: 0;padding-left:3px" v-if="name"> {{ name }}
-          </EHeading>
-        </ESection>
+      <table align="center" width="100%" border="0" cellPadding="0" cellSpacing="0" role="presentation"
+        style="max-width: 37.5em">
+        <tbody>
+          <tr style="width: 100%">
+            <td align="center">
+              <ESection>
+                <EHeading style="font-size: 24px; font-weight: bold;  margin: 0;padding-left:3px;color:#1F2348"
+                  v-if="name"> {{ name
+                  }}
+                </EHeading>
+              </ESection>
 
-        <ESection>
-          <EHeading as="h4"
-            style="font-size: 12px; margin-top: 2px; margin-bottom: 0px;padding-left:3px;letter-spacing:1.4; font-weight:700; text-transform: uppercase;opacity:0.8"
-            v-if="role">
-            {{ role }}
-          </EHeading>
-        </ESection>
+              <ESection>
+                <EHeading as="h4"
+                  style="font-size: 12px; margin-top: 2px; margin-bottom: 0px;padding-left:3px;letter-spacing:1.4; font-weight:700; text-transform: uppercase;color:#6f7383"
+                  v-if="role">
+                  {{ role }}
+                </EHeading>
+              </ESection>
 
 
-        <ERow style=" margin-top:24px">
-          <EColumn>
-            <EText style="font-size: 12px; margin: 0;line-height: 1;margin-top:8px;padding-left:3px">
-              <ELink :href="`mailto:${email}`">
-                {{ email }}
-              </ELink>
-            </EText>
-            <EText v-if="phoneNumber" style="font-size: 12px; margin: 0;line-height: 1;margin-top:8px;padding-left:3px">{{
-              phoneNumber }}
-            </EText>
+              <ERow style=" margin-top:24px">
+                <EColumn>
+                  <EText style="font-size: 12px; margin: 0;line-height: 1;margin-top:8px;padding-left:3px;">
+                    <ELink :href="`mailto:${email}`" style="color:#878a98">
+                      {{ email }}
+                    </ELink>
+                  </EText>
+                  <EText v-if="phoneNumber"
+                    style="font-size: 12px; margin: 0;line-height: 1;margin-top:8px;padding-left:3px;color:#878a98">{{
+                      phoneNumber }}
+                  </EText>
 
-            <EText v-if="primarySocial"
-              style="vertical-align: middle; display: inline-block; margin:0;box-sizing: border-box;">
-              <ELink :href="primarySocial.url" style="font-size:12px;margin:0;line-height: 1;">
-                <EImg :src="primarySocial.img" :alt="primarySocial.social" width="24" height="20"
-                  style="border: none; display: inline; outline: none; text-decoration: none; position:relative;" />
-                {{ primarySocial.username }}
-              </ELink>
-              &nbsp;&nbsp;&nbsp;
-            </EText>
-          </EColumn>
-        </ERow>
+                  <EText v-if="primarySocial"
+                    style="vertical-align: middle; display: inline-block; margin:0;box-sizing: border-box;">
+                    <ELink :href="primarySocial.url" style="font-size:12px;margin:0;line-height: 1;color:#878a98">
+                      <EImg :src="primarySocial.img" :alt="primarySocial.social" width="24" height="20"
+                        style="border: none; display: inline; outline: none; text-decoration: none; position:relative;" />
+                      {{ primarySocial.username }}
+                    </ELink>
+                    &nbsp;&nbsp;&nbsp;
+                  </EText>
+                </EColumn>
+              </ERow>
 
-        <ESection style="margin-top: 40px" />
+              <ESection style="margin-top: 40px" />
 
-        <ERow style="min-height: 32px" v-if="logos.length > 0">
-          <ELink v-for="({ imgUrl, url }) in logos" :key="url" :href="url" style="margin-right: 24px;">
-            <EColumn>
-              <EImg style="margin:-20px 0; height: 24px;" :src="imgUrl" alt="Logo" />
-            </EColumn>
-          </ELink>
-        </ERow>
+              <ERow style="min-height: 32px" v-if="logos.length > 0">
+                <ELink v-for="({ imgUrl, url }) in logos" :key="url" :href="url" style="margin-right: 24px;">
+                  <EColumn>
+                    <EImg style="margin:-20px 0; height: 24px;" :src="imgUrl" alt="Logo" />
+                  </EColumn>
+                </ELink>
+              </ERow>
 
-        <ESection>
-          <EText v-for="social in restSocial" style="vertical-align: middle; display: inline-block; margin:0">
-            <ELink :href="social.url" style="font-size:12px;margin:0;line-height: 1;">
-              <EImg :src="social.img" :alt="social.social" width="24" height="20"
-                style="border: none; display: inline; outline: none; text-decoration: none; position:relative;" />
-              {{ social.username }}
-            </ELink>
-            &nbsp;&nbsp;&nbsp;
-          </EText>
-        </ESection>
+              <ESection>
+                <EText v-for="social in restSocial" style="vertical-align: middle; display: inline-block; margin:0">
+                  <ELink :href="social.url" style="font-size:12px;margin:0;line-height: 1;color:#878a98">
+                    <EImg :src="social.img" :alt="social.social" width="24" height="20"
+                      style="border: none; display: inline; outline: none; text-decoration: none; position:relative;" />
+                    {{ social.username }}
+                  </ELink>
+                  &nbsp;&nbsp;&nbsp;
+                </EText>
+              </ESection>
 
-        <ESection v-if="disclosure.length > 0" style="margin-top: 40px">
-          <EText v-for="line in disclosure" :key="line"
-            style="line-height:1.2;margin: 8px 0;font-style: normal;padding-left:3px;font-size: 12px;">{{ line
-            }}</EText>
-        </ESection>
-      </EContainer>
+              <ESection v-if="disclosure.length > 0" style="margin-top: 40px">
+                <EText v-for="line in disclosure" :key="line"
+                  style="line-height:1.2;margin: 8px 0;font-style: normal;padding-left:3px;font-size: 12px;color:#878a98">
+                  {{ line
+                  }}</EText>
+              </ESection>
+            </td>
+          </tr>
+        </tbody>
+      </table>
     </EBody>
   </EHtml>
 </template>
-
-<style scoped>
-a {
-  color: rgba(15, 21, 49, 0.5) !important;
-}
-
-/* If it is dark, use colors from the client */
-@media (prefers-color-scheme: light) {
-  h1 {
-    color: rgba(15, 21, 49) !important;
-  }
-
-  p,
-  h4 {
-    color: rgba(15, 21, 49, 0.5) !important;
-  }
-}
-</style>
