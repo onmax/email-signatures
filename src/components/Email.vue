@@ -93,7 +93,7 @@ const logos = computed(() => Object.entries(props.logos).filter(([_, value]) => 
               </ESection>
 
 
-              <ERow style=" margin-top:24px">
+              <ERow style=" margin-top:24px;vertical-align:center;">
                 <EColumn>
                   <EText style="font-size: 12px; margin: 0;line-height: 1;margin-top:8px;padding-left:3px;">
                     <ELink :href="`mailto:${email}`" style="color:#878a98">
@@ -105,15 +105,22 @@ const logos = computed(() => Object.entries(props.logos).filter(([_, value]) => 
                       phoneNumber }}
                   </EText>
 
-                  <EText v-if="primarySocial"
-                    style="vertical-align: middle; display: inline-block; margin:0;box-sizing: border-box;">
-                    <ELink :href="primarySocial.url" style="font-size:12px;margin:0;line-height: 1;color:#878a98">
-                      <EImg :src="primarySocial.img" :alt="primarySocial.social" width="24" height="20"
-                        style="border: none; display: inline; outline: none; text-decoration: none; position:relative;" />
-                      {{ primarySocial.username }}
-                    </ELink>
-                    &nbsp;&nbsp;&nbsp;
-                  </EText>
+                  <ERow v-if="primarySocial">
+                    <EColumn>
+                      <EText style="vertical-align: middle; display: inline-block; margin:0;box-sizing: border-box;">
+                        <ELink :href="primarySocial.url"
+                          style="font-size:12px;margin:0;line-height: 1;vertical-align:center;color:#878a98">
+                          <EImg :src="primarySocial.img" :alt="primarySocial.social" width="24" height="20"
+                            style="border: none; display: inline; outline: none; text-decoration: none; position:relative;vertical-align: middle;" />
+                          <span style="vertical-align:center">
+                            {{ primarySocial.username }}
+                          </span>
+                        </ELink>
+                        &nbsp;&nbsp;&nbsp;
+                      </EText>
+                    </EColumn>
+                  </ERow>
+
                 </EColumn>
               </ERow>
 
@@ -131,9 +138,12 @@ const logos = computed(() => Object.entries(props.logos).filter(([_, value]) => 
                 <EText v-for="social in restSocial" style="vertical-align: middle; display: inline-block; margin:0">
                   <ELink :href="social.url" style="font-size:12px;margin:0;line-height: 1;color:#878a98">
                     <EImg :src="social.img" :alt="social.social" width="24" height="20"
-                      style="border: none; display: inline; outline: none; text-decoration: none; position:relative;" />
-                    {{ social.username }}
+                      style="border: none; display: inline; outline: none; text-decoration: none; position:relative;vertical-align: middle;" />
+                    <span style="vertical-align:center">
+                      {{ social.username }}
+                    </span>
                   </ELink>
+
                   &nbsp;&nbsp;&nbsp;
                 </EText>
               </ESection>
